@@ -43,6 +43,7 @@ public class Main {
         int kör=-1;
         int nyert=-3;
         int hajok[]= new int[]{5, 4, 3, 3, 2};
+        Scanner sc = new Scanner(System.in);
         do{
             System.out.print("Játékos ");
             System.out.print(kör+2);
@@ -61,7 +62,7 @@ public class Main {
                 }else{
                     irasdki(map2);
                 }
-                Scanner sc = new Scanner(System.in);
+                //Scanner sc = new Scanner(System.in);
                 System.out.println("Kezdő pont száma:" );
                 hely1= sc.nextInt();
                 System.out.println("Kezdő pont betűje:");
@@ -139,14 +140,52 @@ public class Main {
                 if(!iigaz){
                     i--;
                 }
+                
             }
+            sc.close();
             kör++;
         }while(kör!=1);
-
-
+        Scanner sc2 = new Scanner(System.in);
+        int jkör=0;
         while(nyert!=0&&nyert!=1){
-
+            int hely,betű;
+            String tmp="blablabla";
+            System.out.println("Eddigi pályád:");
+                if(jkör==0){
+                    irasdki(map1);
+                }else{
+                    irasdki(map2);
+                }
+            System.out.println("Támadási pont betűje és száma:"); 
+            //Scanner sc = new Scanner(System.in);
+            tmp= sc2.next();
+            hely=tmp.charAt(0)-48;
+            betű=tmp.charAt(1)-65;
+            //sc.close();
+            if(hely<10&&hely>-1&&betű<10&&betű>-1){
+                if(jkör==0){
+                    if(map2[hely*10+betű]==1){
+                        map2[hely*10+betű]=2;
+                        System.out.println("Ütés!"); 
+                    }
+                    System.out.println("Ez nem ütött!"); 
+                    
+                }else{
+                    if(map1[hely*10+betű]==1){
+                        map1[hely*10+betű]=2;
+                        System.out.println("Ütés!"); 
+                    }
+                    System.out.println("Ez nem ütött!"); 
+                }
+                
+            }
+            if(jkör==0){
+                jkör=1;
+            }else{
+                jkör=0;
+            }
         }
+        sc2.close();
     }
 }
 
